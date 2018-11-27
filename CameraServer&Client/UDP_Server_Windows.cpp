@@ -49,11 +49,9 @@ void main()
 
 	// Create a server hint structure for the server
 	sockaddr_in serverHint;
-	//inet_pton(AF_INET, "10.236.21.240", &serverHint.sin_addr.S_un.S_addr);
-	
-	//ADDR_ANY is good for using ip 0.0.0.0 which means that any client connecting in the local machine will go here.
-	//I'm trying to get the laptops current ip addres to be automatically assigned, im sure its simply i just didnt find the right variable
+	//inet_pton(AF_INET, "10.236.17.189", &serverHint.sin_addr.S_un.S_addr);
 	serverHint.sin_addr.S_un.S_addr = ADDR_ANY; // Us any IP address available on the machine
+	//std::cout << GetAddrInfoA << std::endl;
 	serverHint.sin_family = AF_INET; // Address format is IPv4
 	serverHint.sin_port = htons(54000); // Convert from little to big endian
 
@@ -72,7 +70,6 @@ void main()
 
 	inet_ntop(AF_INET, &(serverHint.sin_addr), buffer, INET_ADDRSTRLEN);
 	printf("address:%s\n", buffer);
-	
 
 	inet_ntop(AF_INET, &(serverHint.sin_port), portBuf, INET_ADDRSTRLEN);
 	printf("port:%s\n", portBuf);
@@ -104,6 +101,7 @@ void main()
 
 								   // Convert from byte array to chars
 		inet_ntop(AF_INET, &client.sin_addr, clientIp, 256);
+
 
 		// Display the message / who sent it
 		//std::cout << "Message recv from " << clientIp << " : " << buf << std::endl;
